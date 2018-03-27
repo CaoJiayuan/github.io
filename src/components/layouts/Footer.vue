@@ -1,6 +1,7 @@
 <template>
-  <v-footer fixed :color="theme.color" :dark="theme.dark">
-    <div :style="{color:color}">admin.test ©{{ new Date().getFullYear() }}</div>
+  <v-footer app :color="theme.color" :dark="theme.dark" class="footer">
+    <v-spacer></v-spacer>
+    <div :style="{color:color}">© {{ new Date().getFullYear() }} {{ site }}</div>
     <v-spacer></v-spacer>
     <v-btn v-for="(t, index) in themes" :key="index" :color="t.color" :dark="t.dark"
            small bottom right fab
@@ -10,11 +11,15 @@
 </template>
 
 <script>
+  import { SITE } from '../../constant'
+
   const mapMutations = Vuex.mapMutations
   const mapGetters = Vuex.mapGetters
   export default {
     data () {
-      return {}
+      return {
+        site : SITE
+      }
     },
     computed: {
       color () {
@@ -40,3 +45,9 @@
 
   }
 </script>
+<style scoped lang="sass">
+  .footer
+    opacity: .65
+  .footer:hover
+    opacity: 1
+</style>

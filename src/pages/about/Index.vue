@@ -1,15 +1,13 @@
 <template>
-  <v-container grid-list-md>
-    <h2 class="text-xs-center">Hello</h2>
+  <v-container>
+    <h1>About</h1>
   </v-container>
 </template>
 
 <script>
   export default {
     data () {
-      return {
-        data: {}
-      }
+      return {}
     },
     components: {},
     methods: {},
@@ -18,6 +16,7 @@
     },
     created () {
 
-    }
+    },
+
   }
 </script>

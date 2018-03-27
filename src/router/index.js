@@ -1,38 +1,28 @@
-import { LOGIN_PATH } from '../constant'
-import Dashboard from '../pages/Dashboard.vue'
-import Account from '../pages/account/Index.vue'
-import Login from '../pages/login/Index.vue'
-
+import Home from '../pages/home/Index.vue'
+import About from '../pages/about/Index.vue'
+import interceptor from '../app/interceptor'
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/dashboard',
-    component: Dashboard,
+    path: '/home',
+    component: Home,
     meta: {
-      title: 'Dashboard',
+      title: 'Home',
       icon : 'fa-home'
     }
   },
   {
-    path: '/users',
-    component: Account,
+    path: '/about',
+    component: About,
     meta: {
-      title: 'Accounts',
-      icon : 'fa-users'
-    }
-  },
-  {
-    path: LOGIN_PATH,
-    component: Login,
-    meta: {
-      title: 'Login',
-      guest: true
+      title: 'About',
+      icon : 'question'
     }
   },
   {
     path: '*',
-    redirect: '/dashboard'
+    redirect: '/home'
   }
 ]
 
@@ -40,6 +30,7 @@ const router = new VueRouter({
     routes
 })
 
+router.beforeEach(interceptor)
 
 export {
   router,

@@ -4,31 +4,31 @@ const storage = new Storage()
 const STORAGE_KEY = 'v_theme'
 const state = {
   theme: {
-    color: 'white',
+    color: 'cyan',
     dark: false,
     background: 'cyan lighten-5',
   },
   themes: [
-    {
-      color: 'grey darken-2',
-      background: 'grey lighten-2',
-      dark: true
-    },
-    {
-      color: 'white',
-      background: 'cyan lighten-5',
-      dark: false
-    },
-    {
-      color: 'primary',
-      background: 'cyan lighten-5',
-      dark: false
-    },
-    {
-      color: 'cyan',
-      background: 'cyan lighten-5',
-      dark: false
-    },
+    // {
+    //   color: 'grey darken-2',
+    //   background: 'grey lighten-2',
+    //   dark: true
+    // },
+    // {
+    //   color: 'white',
+    //   background: 'cyan lighten-5',
+    //   dark: false
+    // },
+    // {
+    //   color: 'primary',
+    //   background: 'cyan lighten-5',
+    //   dark: false
+    // },
+    // {
+    //   color: 'cyan',
+    //   background: 'cyan lighten-5',
+    //   dark: false
+    // },
   ]
 }
 
