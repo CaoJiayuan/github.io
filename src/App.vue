@@ -1,28 +1,11 @@
 <template>
   <div :id="id">
     <v-app>
-      <v-content :class="theme.background">
-        <v-toolbar :color="theme.color" :dark="theme.dark" tabs>
-          <v-toolbar-title>Just for fun!</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-btn icon>
-            <v-icon>search</v-icon>
-          </v-btn>
-          <v-btn icon>
-            <v-icon>more_vert</v-icon>
-          </v-btn>
-          <v-tabs centered :color="theme.color" slot="extension" slider-color="yellow"
-                  v-model="tab">
-            <v-tab v-for="t in tabs" :key="t.id" @click="gotoPage(t)" :href="`#tab-${t.id}`">
-              {{ t.title }}
-            </v-tab>
-          </v-tabs>
-        </v-toolbar>
-        <v-card flat>
-          <transition name="slide" mode="out-in">
-            <router-view></router-view>
-          </transition>
-        </v-card>
+      <top-bar></top-bar>
+      <v-content class="content" :class="theme.background" v-scroll="onScroll">
+        <transition name="slide" mode="out-in">
+          <router-view></router-view>
+        </transition>
         <div style="width: 100%;height: 52px;"></div>
       </v-content>
       <mfooter></mfooter>
@@ -35,6 +18,7 @@
 
   import Toast from './components/Toast.vue'
   import Mfooter from './components/layouts/Footer.vue'
+  import TopBar from './components/layouts/TopBar.vue'
 
   const mapGetters = Vuex.mapGetters
   export default {
@@ -53,25 +37,37 @@
             id : 'about',
             title : 'About'
           }
-        ]
+        ],
       }
     },
-    components: {Toast, Mfooter},
+    components: {Toast, Mfooter, TopBar},
     computed: {
       ...mapGetters({
         theme: 'theme'
-      })
+      }),
+      topMin:{
+        get(){
+          return this.$store.getters.topMin;
+        },
+        set(v){
+          this.$store.commit('minTop', v);
+        }
+      }
     },
     mounted () {
     },
     methods:{
       gotoPage(tab){
         this.$router.push(tab.id)
+      },
+      onScroll(){
+        this.topMin = window.pageYOffset > 64;
       }
     }
   }
 </script>
 
-<style>
-
+<style scoped lang="sass">
+.content
+  min-height: 768px
 </style>

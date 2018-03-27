@@ -1,59 +1,62 @@
 <template>
-    <v-toolbar app :color="theme.color" :dark="theme.dark" fixed>
-        <v-toolbar-side-icon @click="mini = !mini"></v-toolbar-side-icon>
-        <v-toolbar-title>{{ user.name }}</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-avatar size="42px" class="grey lighten-4">
-            <img :src="user.avatar" alt="avatar">
-        </v-avatar>
-        <v-btn ripple @click="logout" flat>登出</v-btn>
-    </v-toolbar>
+  <v-toolbar :dense="topMin" app :fixed="topMin" :color="theme.color" :dark="theme.dark" tabs class="top-bar">
+    <v-toolbar-title>Just for fun!</v-toolbar-title>
+    <v-spacer></v-spacer>
+
+    <v-tabs centered :color="theme.color" :slot="!topMin ? 'extension' : undefined" slider-color="yellow"
+            v-model="tab">
+      <v-tab v-for="t in tabs" :key="t.id" @click="gotoPage(t)" :href="`#tab-${t.id}`">
+        {{ t.title }}
+      </v-tab>
+    </v-tabs>
+
+    <v-btn icon>
+      <v-icon>search</v-icon>
+    </v-btn>
+    <v-btn icon>
+      <v-icon>more_vert</v-icon>
+    </v-btn>
+  </v-toolbar>
 </template>
 
 <script>
-    const mapGetters = Vuex.mapGetters;
+  const mapGetters = Vuex.mapGetters
 
-    import UserApi from '../../apis/UserApi';
-    import {LOGIN_PATH} from '../../constant';
+  export default {
+    data () {
+      return {
+        tab: 'tab-home',
+        tabs: [
+          {
+            id: 'home',
+            title: 'Home'
+          },
+          {
+            id: 'about',
+            title: 'About'
+          }
+        ]
+      }
+    },
+    computed: {
+      ...mapGetters({
+        theme: 'theme',
+        topMin: 'topMin',
+      }),
+    },
+    components: {},
+    methods: {
+      gotoPage (tab) {
+        this.$router.push(tab.id)
+      }
+    },
+    mounted () {
+    },
+    created () {
 
-    export default {
-        data() {
-            return {
-            }
-        },
-        computed  : {
-            mini: {
-                get(){
-                    return this.nav.mini
-                },
-                set(now){
-                    this.$store.commit('miniNavigation', {mini: now})
-                }
-            },
-            ...mapGetters({
-                user: 'user',
-                nav: 'navigation',
-                theme:'theme'
-            })
-        },
-        components: {},
-        methods   : {
-            logout(){
-                UserApi.logout().then(res => {
-                    this.$router.push(LOGIN_PATH)
-                })
-            }
-        },
-        mounted() {
-            this.$store.dispatch('loadUser')
-        },
-        created() {
-
-        },
-        watch     : {
-            mini(now) {
-                this.$store.commit('miniNavigation', {mini: now})
-            }
-        }
     }
+  }
 </script>
+<style scoped lang="sass">
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>Home</h1>
+    <h1 style="height: 2160px;">Home</h1>
   </v-container>
 </template>
 
