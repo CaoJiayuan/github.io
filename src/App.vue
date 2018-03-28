@@ -3,9 +3,9 @@
     <v-app>
       <top-bar></top-bar>
       <v-content class="content" :class="theme.background" v-scroll="onScroll">
-        <transition name="slide" mode="out-in">
+        <!--<transition name="slide" mode="out-in">-->
           <router-view></router-view>
-        </transition>
+        <!--</transition>-->
         <div style="width: 100%;height: 52px;"></div>
       </v-content>
       <mfooter></mfooter>

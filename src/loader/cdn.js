@@ -11,6 +11,7 @@ const cdn = {
     'https://cdn.bootcss.com/vuex/3.0.1/vuex.min.js',
     'https://cdn.bootcss.com/axios/0.18.0/axios.min.js',
     'https://cdn.bootcss.com/lodash.js/4.17.5/lodash.min.js',
+    'https://cdn.bootcss.com/scrollReveal.js/3.4.0/scrollreveal.js',
     'https://cdn.bootcss.com/vuetify/1.0.6/vuetify.min.js'
   ]
 }
