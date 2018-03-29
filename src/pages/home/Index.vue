@@ -1,29 +1,8 @@
 <template>
   <v-container grid-list-md>
     <v-layout row wrap>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="grey lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="green lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="cyan lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="blue lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="yellow lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="purple lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="pink lighten-1 reveal"  style="height: 128px;"></v-card>
-      </v-flex>
-      <v-flex xs2 :key="i" v-for="i in 6">
-        <v-card class="black lighten-1 reveal"  style="height: 128px;"></v-card>
+      <v-flex xs1 :key="i" v-for="i in 128">
+        <v-card :class="randomClass()" class="reveal" style="height: 256px;"></v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -32,12 +11,23 @@
 <script>
   export default {
     data () {
-      return {}
+      return {
+        colors : ['grey', 'white', 'black', 'pink', 'purple', 'yellow', 'blue', 'green', 'cyan'],
+        shades : ['lighten-1', 'lighten-2', 'darken-1', 'darken2']
+      }
     },
     components: {},
-    methods: {},
+    methods: {
+      randomEle (array) {
+        let index = Math.floor((Math.random() * array.length))
+        return array[index]
+      },
+      randomClass(){
+        return this.randomEle(this.colors) + ' ' + this.randomEle(this.shades)
+      }
+    },
     mounted () {
-      let rv = new ScrollReveal({ duration: 1000, delay: 50,distance: '10rem',scale:1})
+      let rv = new ScrollReveal({duration: 1000, delay: 50, distance: '10rem', scale: 1})
       rv.reveal('.reveal', 20)
     },
     created () {

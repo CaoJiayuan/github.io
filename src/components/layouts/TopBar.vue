@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar :dense="topMin" app :fixed="topMin" :color="theme.color" :dark="theme.dark" tabs class="top-bar">
+  <v-toolbar :dense="topMin" :style="{ opacity : topMin ? .75 : 1 }" app :fixed="topMin" :color="theme.color" :dark="theme.dark" tabs class="top-bar">
     <v-toolbar-title>Just for fun!</v-toolbar-title>
     <v-spacer></v-spacer>
 
